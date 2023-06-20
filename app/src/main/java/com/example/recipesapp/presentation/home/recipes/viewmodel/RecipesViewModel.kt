@@ -1,4 +1,4 @@
-package com.example.recipesapp.presentation.recipes.viewmodel
+package com.example.recipesapp.presentation.home.recipes.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,7 +36,8 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
                         withContext(Dispatchers.Main) {
                             setLoading(false)
                         }
-                        _recipesState.value = RecipesState.GetAllRecipesSuccessfully(it.data as ArrayList<Meal>)
+                        _recipesState.value =
+                            RecipesState.GetAllRecipesSuccessfully(it.data as ArrayList<Meal>)
                     }
                 }
             }

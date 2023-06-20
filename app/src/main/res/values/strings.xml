@@ -11,4 +11,10 @@
     <string name="recipe_image">recipe_image</string>
     <string name="calories">Calories :</string>
     <string name="_516_cal">516 cal</string>
+    <string name="recipes_app">RecipesApp</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="chef_image">chef image</string>
 </resources>

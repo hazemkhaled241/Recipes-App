@@ -1,4 +1,4 @@
-package com.example.recipesapp.presentation.login.viewmodel
+package com.example.recipesapp.presentation.intro.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.login.LoginFragment">
+    tools:context=".presentation.intro.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/iv_chef"
+        android:contentDescription="@string/chef_image"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/courgette_regular"
+        android:text="@string/welcome_back"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        android:textColorHint="@color/transparent"
+        app:boxStrokeColor="@color/transparent"
+        app:startIconDrawable="@drawable/ic_email_line"
+        app:boxCornerRadiusBottomEnd="@dimen/_12sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_12sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_12sdp"
+        app:boxCornerRadiusTopStart="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:hint="@string/email"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_input2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_password_line"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:textColorHint="@color/transparent"
+        app:boxCornerRadiusBottomEnd="@dimen/_12sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_12sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_12sdp"
+        app:boxCornerRadiusTopStart="@dimen/_12sdp"
+        app:boxStrokeColor="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_input">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:textColor="@color/black"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_input2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

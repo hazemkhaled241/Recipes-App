@@ -1,4 +1,4 @@
-package com.example.recipesapp.presentation.recipes
+package com.example.recipesapp.presentation.home.recipes
 
 import android.app.Dialog
 import android.os.Bundle
@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.recipesapp.databinding.FragmentRecipesBinding
-import com.example.recipesapp.presentation.recipes.adapter.RecipesAdapter
-import com.example.recipesapp.presentation.recipes.viewmodel.RecipesState
-import com.example.recipesapp.presentation.recipes.viewmodel.RecipesViewModel
+import com.example.recipesapp.presentation.home.recipes.adapter.RecipesAdapter
+import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesState
+import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesViewModel
 import com.example.recipesapp.utils.createAlertDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

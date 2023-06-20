@@ -1,4 +1,4 @@
-package com.example.recipesapp.presentation.recipes.viewmodel
+package com.example.recipesapp.presentation.home.recipes.viewmodel
 
 import com.example.recipesapp.domain.model.Meal
 
