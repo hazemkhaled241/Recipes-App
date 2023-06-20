@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.recipesapp.databinding.FragmentRecipesBinding
+import com.example.recipesapp.presentation.recipes.adapter.RecipesAdapter
 import com.example.recipesapp.presentation.recipes.viewmodel.RecipesState
 import com.example.recipesapp.presentation.recipes.viewmodel.RecipesViewModel
 import com.example.recipesapp.utils.createAlertDialog
@@ -23,6 +24,7 @@ class RecipesFragment : Fragment() {
     private val binding get() = _binding!!
     private val recipesViewModel: RecipesViewModel by viewModels()
     private lateinit var dialog: Dialog
+    private  val recipeAdapter by lazy { RecipesAdapter() }
     private val TAG="RecipesFragment"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,7 @@ class RecipesFragment : Fragment() {
         dialog = requireContext().createAlertDialog(requireActivity())
         recipesViewModel.fetchAllRecipes()
         observe()
+        binding.rvRecipes.adapter=recipeAdapter
     }
 
     private fun observe() {
@@ -50,6 +53,8 @@ class RecipesFragment : Fragment() {
                     is RecipesState.IsLoading -> handleLoadingState(it.isLoading)
                     is RecipesState.GetAllRecipesSuccessfully -> {
                         Log.d(TAG, it.meals.toString())
+                        showRecyclerViewAndHideShimmerEffect()
+                        recipeAdapter.updateList(it.meals)
                     }
                     is RecipesState.ShowError -> {
                         handleErrorState(it.message)
@@ -69,12 +74,12 @@ class RecipesFragment : Fragment() {
         }
     }
     private fun startLoadingDialog() {
-        dialog.create()
-        dialog.show()
+      //  dialog.create()
+      //  dialog.show()
     }
 
     private fun dismissLoadingDialog() {
-        dialog.dismiss()
+        //dialog.dismiss()
     }
 
     private fun handleErrorState(message: String) {
@@ -83,5 +88,9 @@ class RecipesFragment : Fragment() {
             message,
             2000
         ).show()
+    }
+    private fun showRecyclerViewAndHideShimmerEffect() {
+        binding.shimmerFrameLayout.visibility = View.GONE
+        binding.rvRecipes.visibility = View.VISIBLE
     }
 }

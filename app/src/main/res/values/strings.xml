@@ -4,4 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recipes">Recipes</string>
     <string name="favorite">Favorite</string>
+    <string name="fats">Fats :</string>
+    <string name="_8_g">8g</string>
+    <string name="carb">Carb :</string>
+    <string name="crispy_fish_goujons">Crispy Fish Goujons</string>
+    <string name="recipe_image">recipe_image</string>
+    <string name="calories">Calories :</string>
+    <string name="_516_cal">516 cal</string>
 </resources>
