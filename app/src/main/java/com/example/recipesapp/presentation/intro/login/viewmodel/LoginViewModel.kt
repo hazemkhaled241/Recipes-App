@@ -3,6 +3,7 @@ package com.example.recipesapp.presentation.intro.login.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipesapp.domain.usecase.auth.LoginUseCase
+import com.example.recipesapp.domain.usecase.shared_preference.SaveInSharedPreferenceUseCase
 import com.example.recipesapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val saveInSharedPreferenceUseCase: SaveInSharedPreferenceUseCase
 ) : ViewModel() {
     private var _loginState = MutableStateFlow<LoginState>(LoginState.Init)
     val loginState = _loginState.asStateFlow()
@@ -53,7 +55,7 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-    /* fun <T> saveInSP(key: String, data: T) {
+     fun <T> saveInSP(key: String, data: T) {
          saveInSharedPreferenceUseCase(key, data)
-     }*/
+     }
 }

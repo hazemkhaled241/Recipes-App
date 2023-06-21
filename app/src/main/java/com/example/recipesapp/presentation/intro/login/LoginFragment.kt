@@ -14,6 +14,7 @@ import com.example.recipesapp.presentation.home.MainActivity
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginState
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginViewModel
 import com.example.recipesapp.utils.Constants.Companion.DURATION
+import com.example.recipesapp.utils.Constants.Companion.IS_LOGGED_IN_KEY
 import com.example.recipesapp.utils.createAlertDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,24 +22,28 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-private val loginViewModel:LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var dialog: Dialog
-    private var  _binding:FragmentLoginBinding?=null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding=FragmentLoginBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog = requireContext().createAlertDialog(requireActivity())
 
         binding.btnLogin.setOnClickListener {
-            loginViewModel.login(binding.etEmail.text.toString(),binding.etPassword.text.toString())
+            loginViewModel.login(
+                binding.etEmail.text.toString(),
+                binding.etPassword.text.toString()
+            )
             observe()
         }
     }
@@ -50,10 +55,11 @@ private val loginViewModel:LoginViewModel by viewModels()
                     LoginState.Init -> Unit
                     is LoginState.IsLoading -> handleLoadingState(it.isLoading)
                     is LoginState.LoginSuccessfully -> {
-                     Intent(requireActivity(),MainActivity::class.java).also {intent ->
-                        startActivity(intent)
-                        requireActivity().finish()
-                     }
+                        loginViewModel.saveInSP(IS_LOGGED_IN_KEY, true)
+                        Intent(requireActivity(), MainActivity::class.java).also { intent ->
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
                     }
                     is LoginState.ShowError -> {
                         handleErrorState(it.message)
@@ -72,9 +78,10 @@ private val loginViewModel:LoginViewModel by viewModels()
             false -> dismissLoadingDialog()
         }
     }
+
     private fun startLoadingDialog() {
-          dialog.create()
-          dialog.show()
+        dialog.create()
+        dialog.show()
     }
 
     private fun dismissLoadingDialog() {
