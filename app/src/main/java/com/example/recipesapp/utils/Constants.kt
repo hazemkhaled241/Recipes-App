@@ -10,6 +10,7 @@ class Constants {
         const val IS_LOGGED_IN_KEY = "is_logged_in"
         //snack bar
         const val DURATION = 2000
-
+        //splash
+        const val HANDLER_DELAY =2000L
     }
 }
