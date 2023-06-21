@@ -50,7 +50,6 @@ class RecipesFragment : Fragment() {
             recipesViewModel.recipesState.collect {
                 when (it) {
                     RecipesState.Init -> Unit
-                    is RecipesState.IsLoading -> handleLoadingState(it.isLoading)
                     is RecipesState.GetAllRecipesSuccessfully -> {
                         Log.d(TAG, it.meals.toString())
                         showRecyclerViewAndHideShimmerEffect()
@@ -65,22 +64,6 @@ class RecipesFragment : Fragment() {
         }
     }
 
-    private fun handleLoadingState(isLoading: Boolean) {
-        when (isLoading) {
-            true -> {
-                startLoadingDialog()
-            }
-            false -> dismissLoadingDialog()
-        }
-    }
-    private fun startLoadingDialog() {
-      //  dialog.create()
-      //  dialog.show()
-    }
-
-    private fun dismissLoadingDialog() {
-        //dialog.dismiss()
-    }
 
     private fun handleErrorState(message: String) {
         Snackbar.make(

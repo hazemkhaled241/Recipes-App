@@ -22,19 +22,17 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
     val recipesState = _recipesState.asStateFlow()
 
     fun fetchAllRecipes() {
-        setLoading(true)
         viewModelScope.launch(Dispatchers.IO) {
             getAllRecipesUseCase().let {
                 when (it) {
                     is Resource.Error -> {
                         withContext(Dispatchers.Main) {
-                            setLoading(false)
+
                             showError(it.message)
                         }
                     }
                     is Resource.Success -> {
                         withContext(Dispatchers.Main) {
-                            setLoading(false)
                         }
                         _recipesState.value =
                             RecipesState.GetAllRecipesSuccessfully(it.data as ArrayList<Meal>)
@@ -44,16 +42,7 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
         }
     }
 
-    private fun setLoading(status: Boolean) {
-        when (status) {
-            true -> {
-                _recipesState.value = RecipesState.IsLoading(true)
-            }
-            false -> {
-                _recipesState.value = RecipesState.IsLoading(false)
-            }
-        }
-    }
+
 
     private fun showError(message: String) {
                 _recipesState.value = RecipesState.ShowError(message)
