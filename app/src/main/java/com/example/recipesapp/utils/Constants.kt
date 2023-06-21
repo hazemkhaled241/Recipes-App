@@ -8,5 +8,8 @@ class Constants {
 
         //shared pref
         const val IS_LOGGED_IN_KEY = "is_logged_in"
-}
+        //snack bar
+        const val DURATION = 2000
+
+    }
 }

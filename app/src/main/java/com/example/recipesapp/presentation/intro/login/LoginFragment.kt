@@ -13,6 +13,7 @@ import com.example.recipesapp.databinding.FragmentLoginBinding
 import com.example.recipesapp.presentation.home.MainActivity
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginState
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginViewModel
+import com.example.recipesapp.utils.Constants.Companion.DURATION
 import com.example.recipesapp.utils.createAlertDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,7 +85,7 @@ private val loginViewModel:LoginViewModel by viewModels()
         Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
             message,
-            2000
+            DURATION
         ).show()
     }
 

@@ -2,7 +2,6 @@ package com.example.recipesapp.presentation.home.recipes
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import com.example.recipesapp.databinding.FragmentRecipesBinding
 import com.example.recipesapp.presentation.home.recipes.adapter.RecipesAdapter
 import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesState
 import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesViewModel
+import com.example.recipesapp.utils.Constants.Companion.DURATION
 import com.example.recipesapp.utils.createAlertDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +25,6 @@ class RecipesFragment : Fragment() {
     private val recipesViewModel: RecipesViewModel by viewModels()
     private lateinit var dialog: Dialog
     private  val recipeAdapter by lazy { RecipesAdapter() }
-    private val TAG="RecipesFragment"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +50,6 @@ class RecipesFragment : Fragment() {
                 when (it) {
                     RecipesState.Init -> Unit
                     is RecipesState.GetAllRecipesSuccessfully -> {
-                        Log.d(TAG, it.meals.toString())
                         showRecyclerViewAndHideShimmerEffect()
                         recipeAdapter.updateList(it.meals)
                     }
@@ -69,7 +67,7 @@ class RecipesFragment : Fragment() {
         Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
             message,
-            2000
+            DURATION
         ).show()
     }
     private fun showRecyclerViewAndHideShimmerEffect() {

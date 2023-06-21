@@ -10,13 +10,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
-private val getAllRecipesUseCase: GetAllRecipesUseCase
-):ViewModel() {
+    private val getAllRecipesUseCase: GetAllRecipesUseCase
+) : ViewModel() {
 
     private var _recipesState = MutableStateFlow<RecipesState>(RecipesState.Init)
     val recipesState = _recipesState.asStateFlow()
@@ -26,14 +25,9 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
             getAllRecipesUseCase().let {
                 when (it) {
                     is Resource.Error -> {
-                        withContext(Dispatchers.Main) {
-
-                            showError(it.message)
-                        }
+                        showError(it.message)
                     }
                     is Resource.Success -> {
-                        withContext(Dispatchers.Main) {
-                        }
                         _recipesState.value =
                             RecipesState.GetAllRecipesSuccessfully(it.data as ArrayList<Meal>)
                     }
@@ -43,8 +37,7 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
     }
 
 
-
     private fun showError(message: String) {
-                _recipesState.value = RecipesState.ShowError(message)
+        _recipesState.value = RecipesState.ShowError(message)
     }
 }
