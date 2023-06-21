@@ -35,13 +35,10 @@ private val loginViewModel:LoginViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog = requireContext().createAlertDialog(requireActivity())
-        /*loginViewModel.login()
-        observe()*/
+
         binding.btnLogin.setOnClickListener {
-            Intent(requireActivity(),MainActivity::class.java).also {intent ->
-                startActivity(intent)
-                requireActivity().finish()
-            }
+            loginViewModel.login(binding.etEmail.text.toString(),binding.etPassword.text.toString())
+            observe()
         }
     }
 
@@ -90,4 +87,5 @@ private val loginViewModel:LoginViewModel by viewModels()
             2000
         ).show()
     }
+
 }

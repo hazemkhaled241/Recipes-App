@@ -46,7 +46,5 @@ private val getAllRecipesUseCase: GetAllRecipesUseCase
 
     private fun showError(message: String) {
                 _recipesState.value = RecipesState.ShowError(message)
-
-
     }
 }
