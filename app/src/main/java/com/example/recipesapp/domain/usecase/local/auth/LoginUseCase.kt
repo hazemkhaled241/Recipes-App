@@ -1,4 +1,4 @@
-package com.example.recipesapp.domain.usecase.auth
+package com.example.recipesapp.domain.usecase.local.auth
 
 import com.example.recipesapp.utils.Resource
 import com.example.recipesapp.utils.isValidEmailAndPassword

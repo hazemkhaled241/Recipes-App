@@ -2,8 +2,8 @@ package com.example.recipesapp.presentation.intro.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recipesapp.domain.usecase.auth.LoginUseCase
-import com.example.recipesapp.domain.usecase.shared_preference.SaveInSharedPreferenceUseCase
+import com.example.recipesapp.domain.usecase.local.auth.LoginUseCase
+import com.example.recipesapp.domain.usecase.remote.shared_preference.SaveInSharedPreferenceUseCase
 import com.example.recipesapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

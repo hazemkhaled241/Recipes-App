@@ -2,6 +2,7 @@ package com.example.recipesapp.presentation.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,17 @@ class MainActivity : AppCompatActivity() {
             )
         ).build()
         setupNavigationComponent()
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.recipeDetailsFragment -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                else->{
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
 
@@ -45,4 +57,6 @@ private fun setupNavigationComponent() {
     binding.bottomNavigationView.background = null
     binding.bottomNavigationView.setupWithNavController(navController)
 }
+
+
 }

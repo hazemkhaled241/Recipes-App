@@ -3,7 +3,7 @@ package com.example.recipesapp.presentation.home.recipes.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipesapp.domain.model.Meal
-import com.example.recipesapp.domain.usecase.recipes.GetAllRecipesUseCase
+import com.example.recipesapp.domain.usecase.remote.recipes.GetAllRecipesUseCase
 import com.example.recipesapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

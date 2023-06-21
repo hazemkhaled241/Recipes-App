@@ -1,11 +1,12 @@
 package com.example.recipesapp.domain.model
 
 import android.os.Parcelable
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-
 @Parcelize
 data class Meal(
+    @PrimaryKey
     @SerializedName("id") var id: String? = null,
     @SerializedName("fats") var fats: String? = null,
     @SerializedName("name") var name: String? = null,

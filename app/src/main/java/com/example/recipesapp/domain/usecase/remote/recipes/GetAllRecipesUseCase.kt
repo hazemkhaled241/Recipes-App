@@ -1,4 +1,4 @@
-package com.example.recipesapp.domain.usecase.recipes
+package com.example.recipesapp.domain.usecase.remote.recipes
 
 import com.example.recipesapp.data.repository.RecipesRepositoryImp
 import com.example.recipesapp.domain.model.Meal

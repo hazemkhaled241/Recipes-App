@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.databinding.FragmentRecipesBinding
+import com.example.recipesapp.domain.model.Meal
+import com.example.recipesapp.presentation.home.recipes.adapter.OnItemClick
 import com.example.recipesapp.presentation.home.recipes.adapter.RecipesAdapter
 import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesState
 import com.example.recipesapp.presentation.home.recipes.viewmodel.RecipesViewModel
@@ -19,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() {
+class RecipesFragment : Fragment(), OnItemClick<Meal> {
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
     private val recipesViewModel: RecipesViewModel by viewModels()
@@ -38,6 +41,7 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recipeAdapter.onItemClicked=this
         dialog = requireContext().createAlertDialog(requireActivity())
         recipesViewModel.fetchAllRecipes()
         observe()
@@ -73,5 +77,10 @@ class RecipesFragment : Fragment() {
     private fun showRecyclerViewAndHideShimmerEffect() {
         binding.shimmerFrameLayout.visibility = View.GONE
         binding.rvRecipes.visibility = View.VISIBLE
+    }
+
+    override fun onItemClicked(item: Meal, position: Int) {
+        val action = RecipesFragmentDirections.actionRecipesFragmentToRecipeDetailsFragment(item)
+        findNavController().navigate(action)
     }
 }

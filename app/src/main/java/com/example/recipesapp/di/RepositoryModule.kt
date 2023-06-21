@@ -1,5 +1,6 @@
 package com.example.recipesapp.di
 
+import com.example.recipesapp.data.local.dao.RecipeDao
 import com.example.recipesapp.data.network.RecipesApi
 import com.example.recipesapp.data.repository.LoginRepositoryImp
 import com.example.recipesapp.data.repository.RecipesRepositoryImp
@@ -18,9 +19,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideRecipesRepository(
-        recipesApi: RecipesApi
+        recipesApi: RecipesApi,
+        recipeDao: RecipeDao
     ): RecipesRepository {
-        return RecipesRepositoryImp(recipesApi)
+        return RecipesRepositoryImp(recipesApi,recipeDao)
     }
 
     @Provides
@@ -32,4 +34,6 @@ object RepositoryModule {
             sharedPrefs
         )
     }
+
+
 }

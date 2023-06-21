@@ -10,8 +10,8 @@ import com.example.recipesapp.databinding.RecipeItemBinding
 import com.example.recipesapp.domain.model.Meal
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
-    var meals: List<Meal> = emptyList()
-
+   private var meals: List<Meal> = emptyList()
+    var onItemClicked: OnItemClick<Meal>? =null
     inner class MyViewHolder(private val binding: RecipeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(meal: Meal, position: Int) {
@@ -21,6 +21,9 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
             binding.tvFatsValue.text = meal.fats
             binding.ivRecipe.load(meal.image) {
                 placeholder(R.drawable.iv_plate)
+            }
+            binding.cvRecipe.setOnClickListener {
+                onItemClicked?.onItemClicked(meal,position)
             }
         }
     }

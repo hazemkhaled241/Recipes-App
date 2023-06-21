@@ -1,7 +1,7 @@
 package com.example.recipesapp.presentation.intro.splash.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.recipesapp.domain.usecase.shared_preference.GetFromSharedPreferenceUseCase
+import com.example.recipesapp.domain.usecase.remote.shared_preference.GetFromSharedPreferenceUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -6,14 +6,9 @@ import com.example.recipesapp.utils.Resource
 interface RecipesRepository  {
 
      suspend fun getRecipes(): Resource<List<Meal>, String>
-//        return try {
-//
-//            val response = api
-//
-//            response.articles?.map { it.toArticleDomainModel() } ?: emptyList()
-//
-//        } catch (e: Exception) {
-//            throw e.toCustomExceptionDomainModel()
-//        }
+     suspend fun getFavoriteRecipes(): List<Meal>
+     suspend fun addRecipeToFavorite(meal:Meal)
+     suspend fun deleteRecipeToFavorite(meal:Meal)
+
 
 }
