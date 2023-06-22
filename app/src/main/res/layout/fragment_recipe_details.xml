@@ -1,19 +1,454 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.home.recipe_details.RecipeDetailsFragment">
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <ImageView
         android:id="@+id/iv_favorite"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:layout_width="wrap_content"
+        android:scaleX="1.7"
+        android:contentDescription="@string/recipe_image"
+        android:scaleY="1.7"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_favorite_border_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_recipe" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_recipe"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/courgette_regular"
+        android:text="@string/pasta"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_recipe"
+        app:layout_constraintStart_toStartOf="@+id/iv_recipe"
+        app:layout_constraintTop_toBottomOf="@+id/iv_recipe" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_italic"
+        android:text="@string/description"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/iv_details_point"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <ImageView
+        android:id="@+id/iv_details_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/iv_details"
+        app:layout_constraintTop_toTopOf="@id/tv_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_description"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:contentDescription="@string/recipe_image"
+        />
+
+    <TextView
+        android:id="@+id/tv_recipe_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/paragraph"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="@id/iv_favorite"
+        app:layout_constraintStart_toStartOf="@+id/tv_description"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+    <ImageView
+        android:id="@+id/icon6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_details"
+        app:layout_constraintBottom_toBottomOf="@id/tv_ingredients"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_ingredients"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/roboto_italic"
+        android:text="@string/ingredients"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/tv_recipe_description"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_ingredients"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/ingredients_item"
+        />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_details"
+        app:layout_constraintBottom_toBottomOf="@id/tv_details"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_details"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/roboto_italic"
+        android:text="@string/details"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/rv_ingredients"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_carb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/carb"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point"
+        app:layout_constraintTop_toBottomOf="@id/tv_details" />
+
+    <ImageView
+        android:id="@+id/iv_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_carb"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_carb"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_carb_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_50_g"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_carb"
+        app:layout_constraintStart_toEndOf="@id/tv_carb"
+        app:layout_constraintTop_toTopOf="@id/tv_carb" />
+
+    <TextView
+        android:id="@+id/tv_fats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/fats"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point"
+        app:layout_constraintTop_toBottomOf="@id/tv_carb" />
+
+    <ImageView
+        android:id="@+id/iv_point2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_fats"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_fats"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_fats_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_8_g"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_fats"
+        app:layout_constraintStart_toEndOf="@id/tv_fats"
+        app:layout_constraintTop_toTopOf="@+id/tv_fats" />
+
+    <TextView
+        android:id="@+id/tv_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/calories"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point"
+        app:layout_constraintTop_toBottomOf="@id/tv_fats" />
+
+    <ImageView
+        android:id="@+id/iv_point3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_calories"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_calories"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_calories_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_8_g"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_calories"
+        app:layout_constraintStart_toEndOf="@id/tv_calories"
+        app:layout_constraintTop_toTopOf="@+id/tv_calories" />
+
+    <TextView
+        android:id="@+id/tv_proteins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/proteins"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_point"
+        app:layout_constraintTop_toBottomOf="@id/tv_calories"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+
+    <ImageView
+        android:id="@+id/iv_point4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_proteins"
+        app:layout_constraintStart_toStartOf="@id/iv_details_point"
+        app:layout_constraintTop_toTopOf="@id/tv_proteins"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_proteins_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_8_g"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_proteins"
+        app:layout_constraintStart_toEndOf="@id/tv_proteins"
+        app:layout_constraintTop_toTopOf="@+id/tv_proteins" />
+
+
+    <TextView
+        android:id="@+id/tv_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/rate"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fibers" />
+
+    <ImageView
+        android:id="@+id/iv_point5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rate"
+        app:layout_constraintStart_toStartOf="@+id/iv_point8"
+        app:layout_constraintTop_toTopOf="@id/tv_rate"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_rate_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_2"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rate"
+        app:layout_constraintStart_toEndOf="@id/tv_rate"
+        app:layout_constraintTop_toTopOf="@+id/tv_rate" />
+
+
+    <TextView
+        android:id="@+id/tv_fibers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/fibers"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point7"
+        app:layout_constraintTop_toBottomOf="@id/tv_details" />
+
+    <ImageView
+        android:id="@+id/iv_point7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_fibers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_carb_value"
+        app:layout_constraintTop_toTopOf="@id/tv_fibers"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_fibers_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_8_g"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_fibers"
+        app:layout_constraintStart_toEndOf="@id/tv_fibers"
+        app:layout_constraintTop_toTopOf="@+id/tv_fibers" />
+
+    <TextView
+        android:id="@+id/tv_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/ratings"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@id/iv_point7"
+        app:layout_constraintTop_toBottomOf="@id/tv_rate" />
+
+    <ImageView
+        android:id="@+id/iv_point8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_ratings"
+        app:layout_constraintStart_toStartOf="@id/iv_point7"
+        app:layout_constraintTop_toTopOf="@id/tv_ratings"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_ratings_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_2"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ratings"
+        app:layout_constraintStart_toEndOf="@id/tv_ratings"
+        app:layout_constraintTop_toTopOf="@+id/tv_ratings" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/country"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_point7"
+        app:layout_constraintTop_toBottomOf="@id/tv_ratings"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+
+    <ImageView
+        android:id="@+id/iv_point9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/iv_point"
+        app:layout_constraintBottom_toBottomOf="@id/tv_country"
+        app:layout_constraintStart_toStartOf="@id/iv_point7"
+        app:layout_constraintTop_toTopOf="@id/tv_country"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_country_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/_gb"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_country"
+        app:layout_constraintStart_toEndOf="@id/tv_country"
+        app:layout_constraintTop_toTopOf="@+id/tv_country" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

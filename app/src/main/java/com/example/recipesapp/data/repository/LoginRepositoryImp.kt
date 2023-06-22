@@ -7,8 +7,9 @@ import javax.inject.Inject
 class LoginRepositoryImp @Inject constructor(
     private val sharedPrefs: SharedPrefs,
 ):LoginRepository {
-    override fun <T> saveInSharedPreference(key: String, data: T) {
+    override fun <T> saveInSharedPreference(key: String, data: T,) {
         sharedPrefs.put(key, data)
+
     }
 
     override fun <T> getFromSharedPreference(key: String, clazz: Class<T>): T {
