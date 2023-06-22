@@ -2,7 +2,7 @@ package com.example.recipesapp.data.repository
 
 import com.example.recipesapp.data.local.dao.RecipeDao
 import com.example.recipesapp.data.mapper.toMeal
-import com.example.recipesapp.data.mapper.toMealDto
+import com.example.recipesapp.data.mapper.toMealEntity
 import com.example.recipesapp.data.network.RecipesApi
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.domain.repository.RecipesRepository
@@ -19,7 +19,9 @@ class RecipesRepositoryImp @Inject constructor(
 
         val response = api.getAllRecipes()
         return when (response.code()) {
-            200 -> Resource.Success(response.body() ?: emptyList())
+            200 -> Resource.Success(response.body()?.map {
+                it.toMeal()
+            } ?: emptyList())
             else -> Resource.Error(response.message())
 
 
@@ -39,7 +41,7 @@ class RecipesRepositoryImp @Inject constructor(
 
     override suspend fun addRecipeToFavorite(meal: Meal) {
         return try {
-            recipeDao.insert(meal.toMealDto())
+            recipeDao.insert(meal.toMealEntity())
 
         } catch (e: Exception) {
             throw e
@@ -48,11 +50,12 @@ class RecipesRepositoryImp @Inject constructor(
 
     override suspend fun deleteRecipeToFavorite(meal: Meal) {
         return try {
-            recipeDao.delete(meal.toMealDto())
+            recipeDao.delete(meal.toMealEntity())
 
         } catch (e: Exception) {
             throw e
-        }    }
+        }
+    }
 
 }
 

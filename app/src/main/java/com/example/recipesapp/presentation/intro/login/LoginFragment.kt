@@ -14,7 +14,6 @@ import com.example.recipesapp.presentation.home.MainActivity
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginState
 import com.example.recipesapp.presentation.intro.login.viewmodel.LoginViewModel
 import com.example.recipesapp.utils.Constants.Companion.DURATION
-import com.example.recipesapp.utils.Constants.Companion.IS_LOGGED_IN_KEY
 import com.example.recipesapp.utils.createAlertDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +54,6 @@ class LoginFragment : Fragment() {
                     LoginState.Init -> Unit
                     is LoginState.IsLoading -> handleLoadingState(it.isLoading)
                     is LoginState.LoginSuccessfully -> {
-                        loginViewModel.saveInSP(IS_LOGGED_IN_KEY, true)
                         Intent(requireActivity(), MainActivity::class.java).also { intent ->
                             startActivity(intent)
                             requireActivity().finish()

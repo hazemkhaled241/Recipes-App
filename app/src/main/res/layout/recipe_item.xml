@@ -7,7 +7,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_recipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
@@ -22,7 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:elevation="@dimen/_2sdp">
+            android:elevation="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_7sdp"
+
+            >
 
             <View
                 android:id="@+id/white_background"
@@ -38,12 +41,10 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="@id/white_background"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_calories"
                 app:layout_constraintEnd_toEndOf="@+id/white_background"
                 app:layout_constraintStart_toStartOf="@id/white_background"
-                app:layout_constraintTop_toTopOf="@id/white_background" />
+                app:layout_constraintTop_toTopOf="@+id/tv_recipe_name" />
 
 
             <TextView
@@ -51,13 +52,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_17sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-
+                android:fontFamily="@font/courgette_regular"
                 android:text="@string/crispy_fish_goujons"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18ssp"
                 android:textStyle="bold"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/white_background"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -111,10 +112,10 @@
                 android:id="@+id/tv_calories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@string/calories"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
+
                 app:layout_constraintStart_toStartOf="@+id/tv_recipe_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_carb" />
 

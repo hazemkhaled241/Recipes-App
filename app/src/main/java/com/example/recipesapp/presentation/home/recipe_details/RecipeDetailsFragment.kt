@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentRecipeDetailsBinding
 import com.example.recipesapp.domain.model.Meal
+import com.example.recipesapp.presentation.home.recipe_details.adapter.IngredientsAdapter
 import com.example.recipesapp.presentation.home.recipe_details.viewmodel.RecipeDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -22,6 +25,7 @@ class RecipeDetailsFragment : Fragment() {
     private val args: RecipeDetailsFragmentArgs by navArgs()
     private var isFavorite: Boolean? = false
     private var favoriteRecipes: List<Meal> = emptyList()
+    private val ingredientsAdapter by lazy { IngredientsAdapter() }
     private val recipeDetailsViewModel: RecipeDetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +44,16 @@ class RecipeDetailsFragment : Fragment() {
         }
         recipeDetailsViewModel.getAllFavoriteRecipes()
         observe()
+        binding.rvIngredients.adapter=ingredientsAdapter
+        setMealDate()
+        binding.ivBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
     private fun isFavouriteAd(favoriteRecipes: List<Meal>) {
         val result = favoriteRecipes.filter {
-            it.id.equals(args.meal.id)
+            it.id == args.meal.id
         }
         if (result.isNotEmpty()) {
             isFavorite = true
@@ -64,6 +73,23 @@ class RecipeDetailsFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun setMealDate(){
+        binding.ivRecipe.load(args.meal.image){
+            placeholder(R.drawable.iv_plate)
+        }
+        ingredientsAdapter.updateList(args.meal.ingredients)
+        binding.tvName.text=args.meal.name
+        binding.tvRateValue.text=args.meal.rating
+        binding.tvRatingsValue.text=args.meal.ratings
+        binding.tvCountryValue.text=args.meal.country
+        binding.tvFatsValue.text=args.meal.fats
+        binding.tvCarbValue.text=args.meal.carbos
+        binding.tvCaloriesValue.text=args.meal.calories
+        binding.tvProteinsValue.text=args.meal.proteins
+        binding.tvFibersValue.text=args.meal.fibers
+        binding.tvRecipeDescription.text=args.meal.description
     }
 
     private fun handleIsFavorite() {

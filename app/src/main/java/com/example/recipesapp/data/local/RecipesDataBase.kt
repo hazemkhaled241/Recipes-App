@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.recipesapp.data.local.dao.RecipeDao
-import com.example.recipesapp.data.local.dto.MealDto
+import com.example.recipesapp.data.local.entities.MealEntity
 
-@Database(entities = [MealDto::class], version = 1, exportSchema = false)
+@Database(entities = [MealEntity::class], version = 1, exportSchema = false)
 abstract class RecipesDataBase:RoomDatabase() {
 
     abstract fun recipeDao(): RecipeDao

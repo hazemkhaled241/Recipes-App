@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.databinding.FragmentFavoriteBinding
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.presentation.home.favorite.viewmodel.FavoriteViewModel
-import com.example.recipesapp.presentation.home.recipes.RecipesFragmentDirections
 import com.example.recipesapp.presentation.home.recipes.adapter.OnItemClick
 import com.example.recipesapp.presentation.home.recipes.adapter.RecipesAdapter
 import dagger.hilt.android.AndroidEntryPoint

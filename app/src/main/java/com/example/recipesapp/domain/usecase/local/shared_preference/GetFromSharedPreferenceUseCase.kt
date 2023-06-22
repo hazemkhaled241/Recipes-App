@@ -1,4 +1,4 @@
-package com.example.recipesapp.domain.usecase.remote.shared_preference
+package com.example.recipesapp.domain.usecase.local.shared_preference
 
 import com.example.recipesapp.domain.repository.LoginRepository
 import javax.inject.Inject

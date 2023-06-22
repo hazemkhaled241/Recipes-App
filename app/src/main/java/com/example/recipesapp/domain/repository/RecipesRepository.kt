@@ -7,8 +7,8 @@ interface RecipesRepository  {
 
      suspend fun getRecipes(): Resource<List<Meal>, String>
      suspend fun getFavoriteRecipes(): List<Meal>
-     suspend fun addRecipeToFavorite(meal:Meal)
-     suspend fun deleteRecipeToFavorite(meal:Meal)
+     suspend fun addRecipeToFavorite(meal: Meal)
+     suspend fun deleteRecipeToFavorite(meal: Meal)
 
 
 }

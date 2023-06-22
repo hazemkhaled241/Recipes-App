@@ -1,13 +1,13 @@
 package com.example.recipesapp.domain.usecase.local.favorite
 
-import com.example.recipesapp.data.repository.RecipesRepositoryImp
 import com.example.recipesapp.domain.model.Meal
+import com.example.recipesapp.domain.repository.RecipesRepository
 import javax.inject.Inject
 
 class DeleteRecipeFromFavoriteUseCase @Inject constructor(
-    private val recipesRepositoryImp: RecipesRepositoryImp
+    private val recipesRepository: RecipesRepository
 ) {
-    suspend operator fun invoke(meal: Meal){
-        return recipesRepositoryImp.deleteRecipeToFavorite(meal)
+    suspend operator fun invoke(mealDto: Meal){
+        return recipesRepository.deleteRecipeToFavorite(mealDto)
     }
 }
