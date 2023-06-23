@@ -1,7 +1,6 @@
 package com.example.recipesapp.repository
 
 
-import android.util.Log
 import com.example.recipesapp.data.network.RecipesApi
 import com.example.recipesapp.data.network.dto.MealDto
 import com.example.recipesapp.data.repository.RecipesRepositoryImp
@@ -23,7 +22,7 @@ class RecipesRepositoryTest {
     private val repo: RecipesRepository = RecipesRepositoryImp(api = recipesApi)
 
     @Test
-    fun getRecipesSuccessfully() = runBlocking {
+    fun `getRecipes returns success resource when API call is successful`() = runBlocking {
         // Arrange
         coEvery { recipesApi.getAllRecipes() } returns (
                 Response.success(mealDtoList)
@@ -37,7 +36,7 @@ class RecipesRepositoryTest {
     }
 
     @Test
-    fun failedToGetRecipesAndReturnNull() = runBlocking {
+    fun `getRecipes returns error resource when API return null`() = runBlocking {
         // Arrange
         coEvery { recipesApi.getAllRecipes() } returns (
                 Response.success(null)
