@@ -18,7 +18,7 @@ class RecipesRepositoryImp @Inject constructor(
                 200 -> Resource.Success(response.body()?.map {
                     it.toMeal()
                 } ?: emptyList())
-                else -> Resource.Error(response.message())
+                else -> Resource.Error(response.message().toString())
 
             }
         }catch (e:Exception){
