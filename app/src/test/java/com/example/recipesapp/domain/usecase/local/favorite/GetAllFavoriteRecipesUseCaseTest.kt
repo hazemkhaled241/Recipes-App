@@ -1,9 +1,8 @@
-package com.example.recipesapp.domain.usecase.local
+package com.example.recipesapp.domain.usecase.local.favorite
 
 import com.example.recipesapp.data.mapper.toMeal
 import com.example.recipesapp.data.repository.mealsEntityList
 import com.example.recipesapp.domain.repository.FavoriteRecipesRepository
-import com.example.recipesapp.domain.usecase.local.favorite.GetAllFavoriteRecipesUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

@@ -1,4 +1,4 @@
-package com.example.recipesapp.domain.usecase.local
+package com.example.recipesapp.domain.usecase.local.favorite
 
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.domain.repository.FavoriteRecipesRepository
