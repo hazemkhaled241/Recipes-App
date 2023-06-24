@@ -1,8 +1,7 @@
-package com.example.recipesapp.repository
+package com.example.recipesapp.data.repository
 
 import com.example.recipesapp.data.local.entities.MealEntity
 import com.example.recipesapp.data.mapper.toMeal
-import com.example.recipesapp.data.repository.FavoriteRecipesRepositoryImp
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.domain.repository.FavoriteRecipesRepository
 import kotlinx.coroutines.runBlocking

@@ -1,9 +1,8 @@
-package com.example.recipesapp.repository
+package com.example.recipesapp.data.repository
 
 
 import com.example.recipesapp.data.network.RecipesApi
 import com.example.recipesapp.data.network.dto.MealDto
-import com.example.recipesapp.data.repository.RecipesRepositoryImp
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.domain.repository.RecipesRepository
 import com.example.recipesapp.utils.Resource
