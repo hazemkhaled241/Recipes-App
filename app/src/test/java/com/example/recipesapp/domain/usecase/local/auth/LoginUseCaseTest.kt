@@ -21,12 +21,12 @@ class LoginUseCaseTest {
     }
 
     @Test
-    fun `test invoke with valid email and password`() {
+    fun `test invoke() function with valid email and password`() {
         // Given
         val email = "hazem@gmail.com"
         val password = "Hazem123$"
-        val result = Resource.Success("valid User")
-        every { loginRepository.login() } returns Unit
+        val result = Resource.Success("valid user")
+        every { loginRepository.login() } returns Resource.Success("valid user")
 
         // When
         val loginResult = useCase(email, password)
@@ -37,12 +37,11 @@ class LoginUseCaseTest {
     }
 
     @Test
-    fun `test invoke with an invalid email `() {
+    fun `test invoke() function with an invalid email `() {
         // Given
         val email = "hazem gmail.com"
         val password = "Hazem123$"
         val result = Resource.Error("please enter a valid email !")
-        every { loginRepository.login() } returns Unit
 
         // When
         val loginResult = useCase(email, password)
@@ -53,12 +52,11 @@ class LoginUseCaseTest {
     }
 
     @Test
-    fun `test invoke with an invalid password `() {
+    fun `test invoke() function with an invalid password `() {
         // Given
         val email = "hazem@gmail.com"
         val password = "hazem"
         val result = Resource.Error("please enter a valid password !")
-        every { loginRepository.login() } returns Unit
 
         // When
         val loginResult = useCase(email, password)
@@ -69,12 +67,11 @@ class LoginUseCaseTest {
     }
 
     @Test
-    fun `test invoke with an empty email `() {
+    fun `test invoke() function with an empty email `() {
         // Given
         val email = ""
         val password = "Hazem123$"
         val result = Resource.Error("email can't be empty !")
-        every { loginRepository.login() } returns Unit
 
         // When
         val loginResult = useCase(email, password)
@@ -85,18 +82,17 @@ class LoginUseCaseTest {
     }
 
     @Test
-    fun `test invoke with an empty password `() {
+    fun `test invoke() function with an empty password `() {
         // Given
         val email = "hazem@gmail.com"
         val password = ""
-        val result = Resource.Error("password can't be empty !")
-        every { loginRepository.login() } returns Unit
+        val expected = Resource.Error("password can't be empty !")
 
         // When
-        val loginResult = useCase(email, password)
+        val actual = useCase(email, password)
 
         // Then
-        assertEquals(result, loginResult)
+        assertEquals(expected, actual)
         verify (exactly = 0) { loginRepository.login() }
     }
 }

@@ -54,13 +54,12 @@ class RecipesFragment : Fragment(), OnItemClick<Meal> {
                 when (it) {
                     RecipesState.Init -> Unit
                     is RecipesState.GetAllRecipesSuccessfully -> {
-                        showRecyclerViewAndHideShimmerEffect()
                         recipeAdapter.updateList(it.meals)
                     }
                     is RecipesState.ShowError -> {
                         handleErrorState(it.message)
                     }
-
+                    is RecipesState.IsLoading -> handleLoadingState(it.isLoading)
                 }
             }
         }
@@ -82,5 +81,11 @@ class RecipesFragment : Fragment(), OnItemClick<Meal> {
     override fun onItemClicked(item: Meal, position: Int) {
         val action = RecipesFragmentDirections.actionRecipesFragmentToRecipeDetailsFragment(item)
         findNavController().navigate(action)
+    }
+    private fun handleLoadingState(isLoading: Boolean) {
+        when (isLoading) {
+            true -> Unit
+            false -> showRecyclerViewAndHideShimmerEffect()
+        }
     }
 }

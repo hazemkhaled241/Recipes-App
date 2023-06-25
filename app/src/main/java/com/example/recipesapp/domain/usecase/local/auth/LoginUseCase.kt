@@ -11,7 +11,8 @@ class LoginUseCase @Inject constructor(private val loginRepository: LoginReposit
             is Resource.Error ->Resource.Error(result.message)
             is Resource.Success ->{
                 loginRepository.login()
-                Resource.Success(result.data)}
+
+            }
 
        }
     }

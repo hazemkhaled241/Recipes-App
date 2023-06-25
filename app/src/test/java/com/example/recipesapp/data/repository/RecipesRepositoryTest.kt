@@ -11,41 +11,48 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
 
 
 class RecipesRepositoryTest {
 
-    private val recipesApi: RecipesApi = mockk()
-    private val repo: RecipesRepository = RecipesRepositoryImp(api = recipesApi)
+    private lateinit var recipesApi: RecipesApi
+    private lateinit var repo: RecipesRepository
+
+    @Before
+    fun setUp() {
+        recipesApi = mockk()
+        repo = RecipesRepositoryImp(api = recipesApi)
+    }
 
     @Test
     fun `getRecipes returns success resource when API call is successful`() = runBlocking {
-        // Arrange
+        // Given
         coEvery { recipesApi.getAllRecipes() } returns (
                 Response.success(mealDtoList)
                 )
-        // Act
-        val result = repo.getRecipes()
+        val expected = Resource.Success(mealsList)
 
-        // Assert
-        val expectedArticles = Resource.Success(mealsList)
-        assertEquals(expectedArticles, result)
+        // When
+        val actual = repo.getRecipes()
+
+        // Then
+        assertEquals(expected, actual)
     }
 
     @Test
     fun `getRecipes returns error resource when API return null`() = runBlocking {
-        // Arrange
+        // Given
         coEvery { recipesApi.getAllRecipes() } returns (
                 Response.success(null)
                 )
-        // Act
-        val result = repo.getRecipes()
-
-        // Assert
-        val expectedArticles = Resource.Success(emptyList<Meal>())
-        assertEquals(expectedArticles, result)
+        val expected = Resource.Success(emptyList<Meal>())
+        // When
+        val actual = repo.getRecipes()
+        // Then
+        assertEquals(expected, actual)
     }
 
     @Test
@@ -55,14 +62,28 @@ class RecipesRepositoryTest {
             404,
             "Not found".toResponseBody()
         )
+        val expected = Resource.Error(errorResponse.message())
         coEvery { recipesApi.getAllRecipes() } returns errorResponse
 
         // When
-        val result = repo.getRecipes()
+        val actual = repo.getRecipes()
 
         // Then
-        val expected = Resource.Error(errorResponse.message())
-        assertEquals(expected, result)
+        assertEquals(expected, actual)
     }
+
+    @Test
+    fun `getRecipes(),when there is an exception,then returns error resource with error message`() =
+        runBlocking {
+            // Given
+            val expected = Resource.Error("Error")
+            coEvery { recipesApi.getAllRecipes() } throws Exception("Error")
+
+            // When
+            val actual = repo.getRecipes()
+
+            // Then
+            assertEquals(expected, actual)
+        }
 
 }

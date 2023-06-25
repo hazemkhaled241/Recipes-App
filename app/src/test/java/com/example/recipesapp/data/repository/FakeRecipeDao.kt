@@ -5,22 +5,21 @@ import com.example.recipesapp.data.local.entities.MealEntity
 
 class FakeRecipeDao : RecipeDao {
 
-    private val meals = mutableListOf<MealEntity>()
+    private val meals = arrayListOf<MealEntity>()
 
     override suspend fun getAllRecipes(): List<MealEntity> {
         return meals
     }
 
-    override suspend fun insert(meal: MealEntity) {
-        meals.add(meal)
+    override suspend fun insert(mealEntity: MealEntity) {
+        meals.add(mealEntity)
     }
 
-    override suspend fun delete(meal: MealEntity) {
-        meals.remove(meal)
+    override suspend fun delete(mealEntity: MealEntity) {
+        meals.remove(mealEntity)
     }
 
     fun setMeals(meals: List<MealEntity>) {
-        this.meals.clear()
         this.meals.addAll(meals)
     }
 }

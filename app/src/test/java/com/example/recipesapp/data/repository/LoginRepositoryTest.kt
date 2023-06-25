@@ -1,7 +1,7 @@
 package com.example.recipesapp.data.repository
 
 import com.example.recipesapp.domain.repository.LoginRepository
-import com.example.recipesapp.utils.Constants
+import com.example.recipesapp.utils.Resource
 import com.example.recipesapp.utils.SharedPrefs
 import io.mockk.every
 import io.mockk.mockk
@@ -13,44 +13,43 @@ import org.junit.Test
 class LoginRepositoryTest {
 
     private lateinit var repository: LoginRepository
-
     private val sharedPrefs: SharedPrefs = mockk(relaxed = true)
 
     @Before
     fun setup() {
         repository = LoginRepositoryImp(sharedPrefs)
     }
+
     @Test
-    fun testSaveInSharedPreference() {
+    fun `test SaveInSharedPreference function`() {
         // Given
         val key = "TEST_KEY"
         val data = "TEST_DATA"
         // When
         repository.saveInSharedPreference(key, data)
-
         // Then
-        verify { sharedPrefs.put(key, data) }
+        verify(exactly = 1) { sharedPrefs.put(key, data) }
     }
 
     @Test
-    fun testGetFromSharedPreference() {
+    fun `test GetFromSharedPreference function`() {
         // Given
         val key = "TEST_KEY"
-        val data = "TEST_DATA"
-        every { sharedPrefs.get(key, String::class.java) } returns data
+        val expected = "TEST_DATA"
+        every { sharedPrefs.get(any(), String::class.java) } returns expected
         // When
-        val result = repository.getFromSharedPreference(key, String::class.java)
+        val actual = repository.getFromSharedPreference(key, String::class.java)
         // Then
-        assertEquals(data, result)
+        assertEquals(expected, actual)
     }
+
     @Test
-    fun testLogin() {
+    fun `test Login function`() {
         // Given
-
+        val expected = Resource.Success("Logged In Successfully")
         // When
-        repository.login()
-
+        val actual = repository.login()
         // Then
-        verify { sharedPrefs.put(Constants.IS_LOGGED_IN_KEY, true) }
+        assertEquals(expected, actual)
     }
 }

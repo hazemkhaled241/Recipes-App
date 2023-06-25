@@ -22,7 +22,7 @@ class RecipesRepositoryImp @Inject constructor(
 
             }
         }catch (e:Exception){
-            Resource.Error("Please Check Your Internet Connection")
+            Resource.Error(e.message.toString())
         }
 
     }

@@ -5,6 +5,7 @@ import com.example.recipesapp.data.mapper.toMeal
 import com.example.recipesapp.data.mapper.toMealEntity
 import com.example.recipesapp.domain.model.Meal
 import com.example.recipesapp.domain.repository.FavoriteRecipesRepository
+import com.example.recipesapp.utils.Resource
 import javax.inject.Inject
 
 class FavoriteRecipesRepositoryImp @Inject constructor(
@@ -22,21 +23,21 @@ class FavoriteRecipesRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun addRecipeToFavorite(meal: Meal) {
+    override suspend fun addRecipeToFavorite(meal: Meal): Resource<String, String> {
         return try {
             recipeDao.insert(meal.toMealEntity())
-
+            Resource.Success("Added Successfully")
         } catch (e: Exception) {
-            throw e
+            Resource.Success("Something wrong happened ")
         }
     }
 
-    override suspend fun deleteRecipeToFavorite(meal: Meal) {
+    override suspend fun deleteRecipeToFavorite(meal: Meal):Resource<String,String> {
         return try {
             recipeDao.delete(meal.toMealEntity())
-
+            Resource.Success("Deleted Successfully")
         } catch (e: Exception) {
-            throw e
+            Resource.Success("Something wrong happened ")
         }
     }
 

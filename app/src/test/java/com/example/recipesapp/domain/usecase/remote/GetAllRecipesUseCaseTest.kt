@@ -8,38 +8,44 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 class GetAllRecipesUseCaseTest {
-    private val recipesRepository: RecipesRepository = mockk()
-    private val fetchNewsUseCase = GetAllRecipesUseCase(recipesRepository)
+    private lateinit var recipesRepository: RecipesRepository
+    private lateinit var getAllRecipesUseCase :GetAllRecipesUseCase
 
+    @Before
+    fun setUp(){
+        recipesRepository= mockk(relaxed = true)
+        getAllRecipesUseCase= GetAllRecipesUseCase(recipesRepository)
+    }
     @Test
     fun `when invoke is called and return a list Meals`() =
         runBlocking {
             // Given
-            val expectedArticles = Resource.Success(mealsList)
-            coEvery { recipesRepository.getRecipes() } returns expectedArticles
+            val expected = Resource.Success(mealsList)
+            coEvery { recipesRepository.getRecipes() } returns expected
 
             // When
-            val result = fetchNewsUseCase()
+            val actual = getAllRecipesUseCase()
 
             // Then
-            assertEquals(expectedArticles, result)
+            assertEquals(expected, actual)
             }
 
 @Test
 fun `when invoke is called and return an error`() =
     runBlocking {
         // Given
-        val error = Resource.Error("Error")
-        coEvery { recipesRepository.getRecipes() } returns error
+        val expected = Resource.Error("Error")
+        coEvery { recipesRepository.getRecipes() } returns expected
 
         // When
-        val result = fetchNewsUseCase()
+        val actual = getAllRecipesUseCase()
 
         // Then
-        assertEquals(error, result)
+        assertEquals(expected, actual)
     }
 
 

@@ -21,14 +21,14 @@ class GetAllFavoriteRecipesUseCaseTest {
     }
 
     @Test
-    fun testInvoke() = runBlocking{
+    fun `test invoke() function and return fake meals`() = runBlocking{
         // Given
         coEvery { favoriteRecipesRepository.getFavoriteRecipes() } returns mealsEntityList.map { it.toMeal() }
 
         // When
-        val result = useCase()
+        val actual = useCase()
 
         // Then
-        assertEquals(mealsEntityList.first().toMeal(), result.first())
+        assertEquals(mealsEntityList.first().toMeal(), actual.first())
     }
 }
