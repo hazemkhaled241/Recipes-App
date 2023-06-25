@@ -30,7 +30,7 @@
     <string name="_2">2</string>
     <string name="fibers">Fibers :</string>
     <string name="headline">Headline</string>
-    <string name="country">Country</string>
+    <string name="country">Country :</string>
     <string name="_gb">GB</string>
-    <string name="ratings">Ratings</string>
+    <string name="ratings">Ratings :</string>
 </resources>
