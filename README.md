@@ -32,10 +32,10 @@
 <img src = "screenshots/photo0.jpg" width = "250">
 <img src = "screenshots/photo1.jpg" width = "250">
 <img src = "screenshots/photo2.jpg" width = "250">
-<img src = "screenshots/photo3.jpg" width = "250">
 <img src = "screenshots/photo6.jpg" width = "250">
 <img src = "screenshots/photo5.jpg" width = "250">
 <img src = "screenshots/photo4.jpg" width = "250">
+<img src = "screenshots/photo3.jpg" width = "250">
 
 ## License
 
