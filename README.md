@@ -40,6 +40,5 @@ Simple recipes app that fetch recipes from recipes api and show them inside the 
 <img src = "screenshots/photo4.jpg" width = "250">
 <img src = "screenshots/photo3.jpg" width = "250">
 
-## License
 
 
