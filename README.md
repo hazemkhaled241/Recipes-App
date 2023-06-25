@@ -1,5 +1,5 @@
 # Recipes-App
-<img src = "screenshots/photo0.jpg" width = "100">
+<img src = "iv_chef.png" width = "100">
 
 ![AGPL License](https://img.shields.io/badge/AndroidStudio-blue.svg) 
 ![AGPL License](https://img.shields.io/badge/Kotlin-blue.svg) 
@@ -29,12 +29,12 @@
 
 
 # Screen Shots
-<img src = "screenshots/photo0.jpg" width = "100">
-<img src = "screenshots/photo1.jpg" width = "100">
-<img src = "screenshots/photo2.jpg" width = "100">
-<img src = "screenshots/photo3.jpg" width = "100">
-<img src = "screenshots/photo4.jpg" width = "1000">
-<img src = "screenshots/photo5.jpg" width = "1000">
+<img src = "screenshots/photo0.jpg" width = "500">
+<img src = "screenshots/photo1.jpg" width = "500">
+<img src = "screenshots/photo2.jpg" width = "500">
+<img src = "screenshots/photo3.jpg" width = "500">
+<img src = "screenshots/photo4.jpg" width = "500">
+<img src = "screenshots/photo5.jpg" width = "500">
 
 ## License
 
