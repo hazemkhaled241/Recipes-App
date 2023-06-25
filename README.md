@@ -1,5 +1,5 @@
 # Recipes-App
-<img src = "iv_chef.PNG" width = "100">
+<img src = "screenshots/iv_chef.png" width = "100">
 
 ![AGPL License](https://img.shields.io/badge/AndroidStudio-blue.svg) 
 ![AGPL License](https://img.shields.io/badge/Kotlin-blue.svg) 
