@@ -10,10 +10,11 @@
 Simple recipes app that fetch recipes from recipes api and show them inside the app so that user will be able to choose a recipe and show it's details also user can add recipe to favorite or remove
 
 # Features:
-1- Show all recipes.<br />
-2- Show details of a any specific recipe .<br />
-3- Add recipe to favorite.<br />
-4- Delete recipe from favorite.<br />
+1- Login.<br />
+2- Show all recipes.<br />
+3- Show details of a any specific recipe .<br />
+4- Add recipe to favorite.<br />
+5- Delete recipe from favorite.<br />
 
 # Built with:
 • Kotlin<br />
