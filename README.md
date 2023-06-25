@@ -29,6 +29,7 @@ Simple recipes app that fetch recipes from recipes api and show them inside the 
 • Shared Preference<br />
 • Recycler View <br />
 • Mockk<br />
+• ssp,sdp<br />
 
 
 # Screen Shots
